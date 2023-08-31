@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TalkToGod-聊天软件</title>
+
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      flex: 0 0 200px;
+      background-color: #f1f1f1;
+      overflow-y: auto;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section {
+      flex: 1;
+      overflow-y: auto;
+      /* padding: 10px; */
+    }
+
+    #messageSection {
+      background-color: #fff;
+    }
+
+    #inputSection {
+      background-color: #f1f1f1;
+      padding-top: 20px;
+      /* display: flex; */
+      /* align-items: center; */
+    }
+
+    #inputText {
+      padding-left: 10px;
+      flex: 1;
+      padding-top: 5px;
+      border-radius: 5px;
+      border: none;
+      /* margin-right: 10px; */
+      width: 100%;
+      height: 100%;
+      font-size: 28px;
+    }
+
+    #sendButton {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+    }
+    #messageContainer {
+      overflow-y: scroll; /* 启用垂直滚动条 */
+      height: 400px; /* 设置容器的高度 */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2 style="text-align: center;">用户列表</h2>
+      <h4><span id="connNum"></span></h4>
+      <div id="user-list">
+      </div>
+    </div>
+    <div class="content">
+      <div class="section" id="messageSection">
+        <h2 style="text-align: center;">匿名群聊室</h2>
+        <div id="messageContainer"></div>
+      </div>
+      <div class="section" id="inputSection">
+        <textarea  id="inputText"  onkeydown="handleKeyPress(event)" placeholder="在这里输入消息" ></textarea>
+
+        <button id="sendButton" onclick="sendData()">&nbsp;&nbsp;发&nbsp;&nbsp;送&nbsp;&nbsp;</button>
+      </div>
+    </div>
+  </div>
+    <script>
+      
+      var conn_socket = new WebSocket("ws://192.168.51.28:1234/conn/info");
+      // var conn_socket = new WebSocket("ws://42.192.51.50:1234/conn/info");
+        conn_socket.onmessage = function(event) {
+          var message = JSON.parse(event.data);
+          console.log("【用户信息】WebSocket 接受消息:",message);
+          var connNum = document.getElementById("connNum");
+          connNum.innerHTML = "<h4>总计:" + message.counter + "</h4>";
+          var userList = document.getElementById("user-list");
+          var str = ""
+          for (let index = 0; index < message.counter; index++) {
+              str += "<p>用户" + (index+1) +":"+message.username +"</p>";
+          }
+          userList.innerHTML = str
+        }
+
+        // 监听连接事件
+        conn_socket.onopen = function(event) {
+            console.log("【用户信息】WebSocket 连接已建立");
+        };
+
+        // 监听错误事件
+        conn_socket.onerror = function(event) {
+            console.log("【用户信息】WebSocket 出错: ", event);
+            var connNum = document.getElementById("connNum");
+            connNum.innerHTML = "<h4>在线用户: 0" +  "</h4>";
+            var userList = document.getElementById("user-list");
+            userList.innerHTML = ""
+        };
+
+        // 监听关闭事件
+        conn_socket.onclose = function(event) {
+            console.log("【用户信息】WebSocket 连接已关闭");
+        };
+    </script>
+
+
+<script>
+  var socket = new WebSocket("ws://192.168.51.28:1234/msg/info");
+    // var socket = new WebSocket("ws://42.192.51.50:1234/msg/info");
+    socket.onmessage = function(event) {
+        var message = JSON.parse(event.data);
+        console.log("【聊天】WebSocket 接受消息:",message);
+        var messageContainer = document.getElementById("messageContainer");
+        messageContainer.innerHTML += "<p>匿名用户 " + message.time  + "</p>"; // message.username
+        messageContainer.innerHTML += "<p>" + message.message + "</p><br>";
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
+
+    // 监听连接事件
+    socket.onopen = function(event) {
+        console.log("【聊天】WebSocket 连接已建立");
+    };
+
+    // 监听错误事件
+    socket.onerror = function(event) {
+        console.log("【聊天】WebSocket 出错: ", event);
+    };
+
+    // 监听关闭事件
+    socket.onclose = function(event) {
+        console.log("【聊天】WebSocket 连接已关闭");
+    };
+
+</script>
+
+<script>
+
+    // 发送数据
+    function sendData() {
+        var inputElement = document.getElementById("inputText");
+        var data = inputElement.value;
+        if(data == "") {
+          alert("信息不能为空")
+        } else {
+          socket.send(data);
+          inputElement.value = "";
+          console.log("【聊天】WebSocket 发送消息:",data)
+        }
+    }
+
+
+    function handleKeyPress(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        sendData(); // 执行按钮点击事件的操作
+      }
+    }
+
+
+</script>
+</body>
+</html>

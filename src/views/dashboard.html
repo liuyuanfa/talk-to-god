@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TalkToGod</title>
+    <!-- <link rel="stylesheet" href="./style.css" /> -->
+  </head>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .default {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+      box-sizing: border-box;
+    }
+    .header-v2 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9;
+      background-color: #fff;
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.06);
+    }
+    .hcont {
+      display: flex;
+      justify-content: space-between;
+      height: 70px;
+      align-items: center;
+      margin: auto;
+      width: 100%;
+      position: relative;
+      padding: 0 60px;
+      box-sizing: border-box;
+    }
+    .hnavs {
+      flex: 1;
+      height: 100%;
+      position: relative;
+      display: flex;
+    }
+    .logo {
+      font-size: 24px;
+      display: flex;
+      height: 100%;
+      align-items: center;
+      margin-right: 10px;
+    }
+    .hnavs_info {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      min-width: 768px;
+    }
+    .hnitem {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #444546;
+      font-size: 16px;
+      line-height: normal;
+      transition: color 0.3s;
+      box-sizing: border-box;
+    }
+    .login_box {
+      display: flex;
+      height: 100%;
+      align-items: center;
+    }
+
+    .tddownload {
+      margin-top: 70px;
+      flex: 1;
+    }
+    .bnr {
+      position: relative;
+      height: 130px;
+      box-sizing: border-box;
+    }
+    .bkg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .inner {
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+      align-items: center;
+      max-width: 1100px;
+      width: 100%;
+      margin: auto;
+    }
+    .inner_item {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+    .tab_icon {
+      width: 60px;
+      height: 60px;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .title_active {
+      color: #107bf5;
+    }
+    .tab_content {
+      display: flex;
+      justify-content: center;
+      height: 600px;
+      padding-top: 70px;
+      box-sizing: border-box;
+      padding-bottom: 80px;
+    }
+    .left_info {
+      padding-top: 60px;
+      width: 500px;
+    }
+    .left_info_title {
+      font-size: 40px;
+      color: #353535;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 50px;
+    }
+    .animation_dur {
+      visibility: visible;
+      animation-duration: 1s;
+      animation-name: fadeInUp;
+    }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+      }
+      100% {
+        opacity: 1;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+    }
+    .sub_info {
+      font-size: 18px;
+      font-weight: 400;
+      color: #7f7f7f;
+      line-height: 22px;
+      margin-bottom: 32px;
+    }
+    .right_img1 {
+      width: 580px;
+      height: 440px;
+    }
+    .win_download {
+      display: flex;
+      align-items: flex-start;
+    }
+    .btn {
+      display: block;
+      background: #0070ff;
+      color: #fff;
+      text-align: center;
+      width: 160px;
+      height: 54px;
+      line-height: 54px;
+      border-radius: 8px;
+      font-size: 20px;
+      margin-right: 19px;
+      margin-bottom: 20px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .vinfo {
+      font-weight: 400;
+      color: #7f7f7f;
+      line-height: 20px;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    footer {
+      background-color: #272f3c;
+      min-height: 350px;
+      padding-top: 57px;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .ft_box {
+      max-width: 1200px;
+      position: relative;
+      margin: auto;
+    }
+    .ft_left {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .ft_logos {
+      width: 160px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .ft_info {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      bottom: 20px;
+    }
+    .ftn_title {
+      margin-bottom: 22px;
+      color: #fff;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+    .ftn_item {
+      display: block;
+      color: hsla(0, 0%, 100%, 0.4);
+      margin-bottom: 6px;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .fti_line {
+      max-width: 1440px;
+      height: 1px;
+      background-color: hsla(0, 0%, 100%, 0.05);
+      margin: auto;
+    }
+    .fti_box {
+      text-align: center;
+      margin-top: 17px;
+    }
+    .fti_box span {
+      color: hsla(0, 0%, 100%, 0.5);
+      font-size: 12px;
+      display: inline;
+      margin-right: 10px;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div class="default">
+        <header class="header-v2">
+          <div class="hcont">
+            <div class="hnavs">
+              <div class="logo">TALKTOGOD</div>
+              <div class="hnavs_info">
+                <div class="hnitem" style="font-weight: 800">下载</div>
+                <div class="hnitem" @click="gotoPages">资源中心</div>
+                <div class="hnitem" @click="gotoPages">关于我们</div>
+                <div class="hnitem" @click="gotoPages">帮助</div>
+              </div>
+            </div>
+            <div class="hbtns">
+              <div class="login_box">登录</div>
+            </div>
+          </div>
+        </header>
+        <div class="tddownload">
+          <div class="bnr">
+            <img
+              src="https://www.todesk.com/dist/img/1d8b65b.png"
+              class="bkg"
+            />
+            <div class="inner">
+              <div
+                class="inner_item"
+                v-for="(item,index) in deviceList"
+                :key="index"
+                @click="selectDevice(item)"
+              >
+                <img
+                  :src="selectedDevice.id===item.id ? item.iconActive : item.icon"
+                  class="tab_icon"
+                />
+                <p
+                  class="title"
+                  :class="{'title_active': selectedDevice.id===item.id}"
+                >
+                  {{item.name}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="tcont_bx">
+            <div class="tab_content tab_content0">
+              <div class="left_info">
+                <h1 class="left_info_title animation_dur">
+                  {{selectedDevice.name}}客户端
+                </h1>
+                <p class="sub_info animation_dur">{{selectedDevice.note}}</p>
+                <div>
+                  <div class="win_download">
+                    <a href="" class="btn">立即下载</a>
+                  </div>
+                  <!-- TODO:下载链接待替换 -->
+                  <a class="vinfo">当前版本： 0.0.1</a>
+                </div>
+              </div>
+              <div class="right_img">
+                <!-- TODO: 示例图片待替换,替换后在deviceList数组的img填入图片路径，然后改用下方注释的img标签 -->
+                <img
+                  src="https://todeskcdnspeed.todesk.com/202303161406305f6fe4304d7990.png"
+                  class="right_img1"
+                />
+                <!-- <img :src="selectedDevice.img" class="right_img1"> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer>
+          <div class="ft_box">
+            <div class="ft_left">
+              <div class="ft_logos">TALKTOGOD</div>
+              <div class="ft_navs">
+                <p class="ftn_title">下载</p>
+                <a class="ftn_item">Windows</a>
+                <a class="ftn_item">macOS</a>
+                <a class="ftn_item">Android</a>
+                <a class="ftn_item">iOS</a>
+                <a class="ftn_item">Linux</a>
+              </div>
+              <div class="ft_navs">
+                <p class="ftn_title">支持</p>
+                <a class="ftn_item">帮助中心</a>
+                <a class="ftn_item">联系客服</a>
+                <a class="ftn_item">相关资讯</a>
+              </div>
+              <div class="ft_navs">
+                <p class="ftn_title">关于 TALKTOGOD</p>
+                <a class="ftn_item">关于我们</a>
+              </div>
+            </div>
+          </div>
+          <div class="ft_info">
+            <p class="fti_line"></p>
+            <p class="fti_box">
+              <span>Copyright © TALKTOGOD开发团队 版权所有 </span>
+              <span> TALKTOGOD聊天软件隐私政策 </span>
+              <span>用户权限</span>
+              <span>软件许可协议</span>
+            </p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+  <!-- TODO: vue包可替换成本地文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        deviceList: [
+          {
+            id: 1,
+            name: "Windows版",
+            note: "全面支持Win11、Win10、Win8、Win7等操作系统",
+            img: "", // 图片文件路径待填
+            icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4BAMAAADLSivhAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAbUExURUdwTP///zY2NjU1NTU1NTU1NTU1NT09PTU1Nbksa2AAAAAIdFJOUwABQuuV3GcXq2ah2QAAAPdJREFUWMPt2MEKgkAUBdAZF7n1E6TID4ggl0IGrbPAD3DRslW0N+t9dmVE0MzijiNFcu9SOAgzb57zVIphGIbxSbAUJNvYhveC5WKxI0GTmfgE44WJ1zKDlmYiZ/NhKjG2rlKbD0UOEA5FbBjcUjuOIKuJiQeBwyQvOuJq9+gc7jhMqkI92447Tu9Kd8WtIv4S/l1tc6u+iVOvIhnnhV+FdW1D/g1Qe9W2jvitIh4A9rhvl/CY0PQ8oOCj0dXER9TWWc/joApWkJ3HDjuCbeFHv3LDXm8m/l/8ihObWmsaO+3tdcRMg+HSfowV2Ghs2fDvGcMwzDs3svnGqCceVGEAAAAASUVORK5CYII=",
+            iconActive:
+              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4BAMAAADLSivhAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAeUExURUdwTADg/wBs8gBr8QBr8QBr8gBr8gBx+QBs8wBr8dqpRSsAAAAJdFJOUwABQ97rpnsXYbKPa3oAAAENSURBVFjD7dghD8IwEAXgHgLsigALAYFmIGZxaDBIEuax/AQ0ELh/ywZB9cTrmoxA3pNLvnRZu1venGMYhmFS0tkokuXIwgfF8jBsV9HsAysnGN9DvNOVB56MTPUWXi10jGDf10t4VfWI7IkMVS0MbmkKFhtnxMS/hYezctEQl3k9OeJxb1bmma6b4Zq598yKx0rcIv7e2eZWtYmTXklfz5+mWF5jaJtwPMUnDEDnqzQ+25KCXRLmV5K4ZSzewlVNgLRZE6qCkiELmwUlohoFi8ggoZQ5d0broNGgBC2iyHP97AhcmYiJI/EnMUom5pleYXht4gs24goTX7H7npp4js3HzB5e/PXGMMyf5Qk4cP99AJzR9AAAAABJRU5ErkJggg==",
+          },
+          {
+            id: 2,
+            name: "macOS版",
+            img: "",
+            note: "支持macOS 10.12版本及以上设备（仅2012年中或更新机型）",
+            icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAAB4CAMAAAAKTxbdAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAA2UExURUdwTBMXJBMaLw4TIhQbMBIZLhIYLBMaLxIZLhMaLw4TIgcJEQAAAAkNGBMZLRAWJxMaLwAAADkZjcgAAAAQdFJOUwAJ7UduhHqjXJIlrunSa5HsOzcYAAABx0lEQVRo3u2a3Y6DIBBG5UdFBmx5/5ddtHuxWYhCM0CTfueqMbbHmQ6IDtMEAAAAAADAJ2INF1ZUiZV88iFVhXl78rKVx/zkpjRucWRb0soDnb8myoOWlq9gZXnYJp66Mg6WNf6eKTtVVxVGWdHqj1fviPprooYa6k9T24dfxqiNC8EMUasQghMj1CLGHMwQtYnmx5gy2x2p7hWuVu9oiasoRS7cXACvmsKJc+EX6qWmkDD3Ue+pmUQftUvMl2ObUW3ToE2nMsvku9fgWtJ8j1N3i9qk6l5TisqMrV6zWTq4wtJJnZnMruYUTnUm41dDm1MtMhl3nW4fpmo+471p+v9m3+1+bf+l3NmOqxQ3ZEp5xU3BP+z5CODIdl0Wir8fBR73oIYaaqih3hs0IPbC10IVLZqSdz0VbZdXs2mbedhqmk1nxnnZq/4dTmoqR7O2U3VdbRi9ZDlGikyOHle65b+gDVfF2ihJF90+HrVTY8QR9depVTbhFR3T98m3eed4dG6tPuJbshdEjc023/63NbsC3jT7/IQsiLfTn6mxc5JbM5tPzj0d0jQtsWuauelW3azU5lt1swEmlps9KFpMAAAAAAAA1PEDorNlbhAGZF4AAAAASUVORK5CYII=",
+            iconActive:
+              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAAB4BAMAAADPv/vcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAnUExURUdwTBB79hF89RB89RF79hF79RB89hB79hJ99xiC/RB79hF89RB79X4zyqkAAAAMdFJOUwBbom2ShHvhNA+1gi8zAOMAAAGpSURBVFjD7ZivT8NAFMe7TqzbDCgQFQMDAjEUBoEhMxMYPCGEhQQxDL8y0aAr6jCIBQSICf6EMRjHxvePYgvpbnRX+u5uJIj3UU2bT+569+7dvXMchmEY5i/wFgksp8i5Fiicqe06aOwpmybKeFHZBeB+NZsOhMoOMSANbQuB4vU2KqSZ2UBVae+Q7DrbbP9Du1irWtg+FsxtDyIyt29nM4mG7ePZwt56Mh7zm4uHKLcm1iMT2x3lTzHO8RUTuxOn4E8DW+b3toFdiGVh8t9hyt5Bs/3Y7prYp7HdtLK7Vj3/cGxGbejYzBgODGx3Yvcim1j7mV6IcT45BAmTVeKrg41ol2xWyfiE8t3xwCi3hBbRMmr88TzwGtcB76Fssz0f26ayCHFFkYvqquYOYnc/mxoQzb2akyeNDNpKO0+TX9OK4GPJEUT82MDb1IfNiDK0cgcpJLOqpj3Qt2HRtic3fTdljn4hj178WEZf13bxLsNoqGuHsrseZqqL7LXQnArCSz17CViZXLHUIbQaz9FWRgqlpK01buWkrTVnxcPELcsJ38IxDMNk8wVZd1aW7p3tZAAAAABJRU5ErkJggg==",
+          },
+          {
+            id: 3,
+            name: "Android版",
+            note: "正在开发中..",
+            icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAAB4BAMAAADPv/vcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAqUExURUdwTBMaLxQbMBQaLxMbNRMaNSctRxMbNRQbNRccNhMbMxMaNBMaLxMbNy/dfGMAAAAMdFJOUwCGenugugbKQx5q6AY22+gAAAGuSURBVFjD7di/SwJhGAfwK6/Ta29LcLGhdA2CAoNoSogghCA4+oVtLmaLIBE1mHBbBA0O6lJBNNuQNFQ+Q5aiJc//kj9p8D3uvecNJXi/ww13fHgeHny941EUGRmZYUfPF2Eg5Y0DPj0HzLxx4T2wyCqPXrPSzxzYA1BKDd6OBgFS9toNZZM5yyLE7PU1vLAfXMCrvb5tlchlmU1xTD0AIZ1ZReXRi+Bj63F4stfT4FPyBRHNjJh2SS211H+stfbFoOqx9mWeqvXCyexVlqoPk4jNFFVnsJUKUXswjFh99NG0G9OI38kvmu40/tu6Q73U1TWK1ozcSifLvR+MI51u+OOJSCSeiF9+Otfb1XC38/odEnStp5tiOiii68ERdj4K7aVrzVvp187UndfemenPPLpAOCVav3NN5IR+0E6ofoqNczw2if9rLnzfxyODqHfxXsWYQq89getUPYkxla61qZS+aZLfoYb8dpBaaqmllvqf6QCE2A9UKPFtqSxWZxx7JrENmdh2rr0ZPGPcDnBtBltDtwjHyBVNbCOq3bDxg8IV3c/aBG+ZioyMzJDzA3pQKQRUxidLAAAAAElFTkSuQmCC",
+            iconActive:
+              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAAB4BAMAAADPv/vcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAnUExURUdwTBF89RB89hB79hB79hB79hB79hF99xB79hJ9+BB89hqH/xB79SrZKdUAAAAMdFJOUwCFe5rI63hDtCFgDUgg1u4AAAGTSURBVFjD7dg9S8NQFAbg2BaT2F8gOHTQyQ4VF8EODoKCHeqgLh26CCIZAlpwyOAkDg5ZRYeC4tIOXexsbPrJ+6NMGouDN+Tm3FIEzztkuJeHE25ITjiaxuFwFp38RQ2/0r/ryOlzCHMqhQ3EZFdGl+N0TwLrwMAWLFuAnaxz6LuidbOGvWT9jKF4w8E4WbeDEjdN4U1NkrWFkimsksUgWa+hLtbL8KS09toSbGTkdEG8kZGtraILrFmzltV5Jb0UXjap2my9XT42yboSdD+bqp2w/3hErSNoaaNanaZzaACTypimnah1ejRdjLRP0p2X7Wm2tE563Thb35/m8P0zvX4Yff9E9NtQ0RZBV+ZT2y9StP8H7vzEwqKfWLk3046fXnfrszPXVylvyaw27R1rRHpA0+YVhtc4cKlfZHwYOCJ/z1E1fn6M0+pMWJusV1DN4pbcx3Zs897l7s+aNWvWrP+NtlASb0hNitpxgzCpKZXahExtOqcDx0+C5Q2pyaDaVDI425iUZLTaNFZxEszhcOaXL7f0FooxlIVeAAAAAElFTkSuQmCC",
+          },
+          {
+            id: 4,
+            name: "iOS版",
+            note: "正在开发中..",
+            icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAAB4BAMAAADPv/vcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAwUExURUdwTBQcMRMaLz09QxMgJgwQHQAAAA8VJA4TIw4UIxMaLw4UIhMaLwIDBRMaLwAAAOMw7+cAAAAOdFJOUwAi3AQOqeBDX831Lfl+L+t2JgAAAbFJREFUWMPt2L9LAmEYB/BXTssIySla+gHR0iAXp5tEYOAmtTgX6Bga5RYUtEuTWzQ01HQI0hC0RrRI/0E0CGrybIkQcuXpe8Z5do/PgdPzRXj1lQ+vvr7ewVcIDocz9RQ2wZ7mxgnOKo/gkGqjjNKz4Jx7lD4bo1uYxZUI1E5VIVJD1xDCXwBYR+ggwKUm7FrRilBH6ADUzPGv/v0oIlatqe56Gz7MMT7Ur73XWwAInYJbcwzplr4z90OHhPumrcBa/1k0mtg1HwMUgbD72pa2hzVr1qxZe9XLRx500Oh40OdGhq79OeOCroNG18OuhbJ5qn4oXZeXSu19kg4Zg7xR9LvUGYL2SdwOE3RA6m/K956T+oqiF6Tem76ekfqAomNSdyjaOixGnqD9lu5SztqN1F87BL1qOy6T6YDtJ5vwH5obnHOVpBf7+pB2dfCls8fJdDZMvDIpfBdkzZo1a9ZT14psikbe0GHHfe04fDrOz0ML0VLF4Pnf5sy9nXOaL0IdsbbWawZHZqPIZlA8jWklmxWMTurO+kXDaOc2FhoVFaOF5tgE53FYCBU9yeFwXPIDvd9Xh+yU+d4AAAAASUVORK5CYII=",
+            iconActive:
+              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAAB4BAMAAADPv/vcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAhUExURUdwTBB89RR7+BiC/xB79RF89hB79hF89hB79hB79hB79UFeOQUAAAAKdFJOUwDdIw71QahiyYirNRAMAAABhUlEQVRYw+3Yv0/CQBQH8LMlHGUySjAylTgYmJoYFyYdXDo1gRBHNUxOnZ10dDPRfwBSWnl/paXN1fak4fWdYXrf5dLhkzuuP+7xhOBwOAfPvAd6on6AxPewK984Lv2dGu5QegY1QU3eg3iaDpPSooWw5wDHmIUDhF5VL9NL+wUShO74cTZW5xainQ970oJVNnY1bUGE0BO4yUbHr+627YO3X4+L3blSyS8H4DbRWlizZs2atakenRlo6ScGegandG0PIKRrCRuDXZOlYqehHr29X1wubp9I2tkWWtsDOKToL3V8nxC0pU7/pUvQjpp6TfndR6rGfKXolpr7w0g/mKy8uP2NdFvphKJlUZoHlPtdFHsbyrP2rHRM0WOlV9S3JMsnRafflfw590jv97DyijXV1uJ8ev3Yd6lfJptPQdasWbNmfXCtOkV/guoUddVprwXXpeqoSkMLrkMm4ffPRDm47ly6O1lnUFs3sjNY25WMAoyu64iuBSpDk26sYSeYw+H8X34A5+Ck+idN6XkAAAAASUVORK5CYII=",
+          },
+          {
+            id: 5,
+            name: "Linux版",
+            note: "正在开发中...",
+            icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4BAMAAADLSivhAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAtUExURUdwTBciOhMbNxQcORMbNxQeORMbNxMbNxMbNxMbNxQbNyIvRRQcOBMbNxMbN0mxd00AAAAOdFJOUwAW0T7BL+if+OtmB1WDjjW2TgAAAi1JREFUWMPtmM9LG0EUx7OKWmMCuaoIITlUPEhA2luhlB7EQghIvQlKQ+kpSDyISgOlggulA8V/IAchrWiYkwebQ47ij2BPlRaE2rhugnl/g7OzBprdiG9eFYqdL2Te7rCfncnuvO/u20BAS0tL679XX+E5Sku8DfwYkHrlZ0MMC9tlH9wPaH3ywTlojKF0DKs++A3kOeq6BsHy9YHNkXeFgfdIA2rYe5qBiIbvFdyZfThIhosA76mwITKoxolw0Mm/MhHucfxhjgpPwLz5lAr/YHsZKhweZmmYoV4waywHv4jwzgr/kqtT//P3dLzbIsLbqSc8zI5ocEH8uvwLFAUba06btCIUuCfqtBXfGkPBlbzTdsBvCjwsjwlBlQCXzt3I7Ig6vH3hxlFIqMOfP7gxCXl1OBl14zgFzsw1p00ZeVmGaeZ1opvhzkOYlRsn4E3pm+EHAOdN+IwAy+n2nTTPogB3C/id8GxjVGy8UIR7BXMq4pTj3XVFuOhA84Eh04k/OQGG1/K1MM4VRzbWBTeyuZUFaHxVXiR8YPE0JeJuNUHJZ871C42Gbw0WZQIW9pcJ4nxlHFtqM8ccfHzZosmDKz1q7T722pJCUWa3K8qC6HLQ+xD420JUeMez2J8CMKUAWrpjbxHFW5c0T/msSinX4hrW8F3BQwtSYDfXuLv/DelRzLTNlhxmJjMtzNcM47pUjGBGTrZnqziH25AqLFxpyd3f11/9tLS0/jldAv/e3sAxxgsQAAAAAElFTkSuQmCC",
+            iconActive:
+              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4BAMAAADLSivhAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAtUExURUdwTA979RB79RB79RB79xN9+RWE/hiF/xF89xB79xB89hF8+Q979hJ+9RB79XIvHjsAAAAOdFJOUwDr0MI+LxcTZqeRU9w3r2dZjQAAAgtJREFUWMPtlz9Lw0AUwKNoWv/SoVQECeKkIEVwcSoKfoAOuohCXJ3i5qi4+AeKbiq1KIhUh1IHQRQKoqv5BC5aFavxfQYvlzikd6UvT9CK96PkmtBferncvXtP0xQKheLfE1kfRbFjSeR7QHInuh2ApijIi3i5R5AL8DaJgv1QkA1Yxg1sFB6EawDY1wJQPd665H41MAQ5EkY2ldxockt2yCTLGYAnqqyzFfRgEeWofPHi5HZXPiDKbWNwBCPUf87DhU2Wr+EGYtQBcyZz8EKVK9ZK4ZXa7ZPe206HKC+aF1a7+K5w8jqfZR8kWY+7x5RjUeS2fvdYgi2KXOK7QLOwsFBy0vI2wDJBjlZqxHiM3PnutTaMh5cz/qzOVe+AGDnV77cU2fZfUZIiJz15xqiORPXlrks/e2ARNBZW7gao+OkGPBNk71kLX3cJITcxOeGuDpt9GSHIj6yddcPva0g540r72oIhxu76comna338eBv2mfVVZg1urmVByNkwk2Rp+zHNmrNyWuUkSv51+RtlgmZIMi4pHZI+sopnOsDUlc954PLcoaQ0mscXZQl5rohDUoBNYN24tAQeCMAyXg5A8PqOWX9QW3nw5HtVOnQt3gCy/ce67fzp0f5BeeF074R9AIY5AHv8/Bgl2/LF5GBcvdZSNDF2Su6WcRFujbOx65P3zouaQqFQNBqf2pngJ1g1dAIAAAAASUVORK5CYII=",
+          },
+        ],
+        selectedDevice: null,
+      },
+      mounted() {
+        this.selectedDevice = this.deviceList[0];
+      },
+      methods: {
+        gotoPages() {
+          alert("敬请期待！");
+        },
+        selectDevice(data) {
+          if (data.id > 2) {
+            alert("正在开发中！");
+            return;
+          }
+          this.selectedDevice = data;
+        },
+      },
+    });
+  </script>
+</html>
