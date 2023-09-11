@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>测试设备</h1>
+  </body>
+  <script>
+    window.onload = function () {
+      const sUserAgent = navigator.userAgent.toLowerCase();
+      console.log("user", sUserAgent);
+      // if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      //   // 用户代理包含 iPad、iPhone 或 iPod，可以判断为iOS设备
+      //   console.log("iOS");
+      //   alert("iOS");
+      // } else if (/Android/.test(userAgent)) {
+      //   // 用户代理包含 Android，可以判断为Android设备
+      //   console.log("Android");
+      //   alert("Android");
+      // } else {
+      //   // 其他操作系统或无法判断
+      //   console.log("其他操作系统");
+      //   alert("其他操作系统");
+      // }
+      var isIphone = sUserAgent.match(/iphone/i) == "iphone";
+      var isHuawei = sUserAgent.match(/huawei/i) == "huawei";
+      var isHonor = sUserAgent.match(/honor/i) == "honor";
+      var isOppo = sUserAgent.match(/oppo/i) == "oppo";
+      var isOppoR15 = sUserAgent.match(/pacm00/i) == "pacm00";
+      var isVivo = sUserAgent.match(/vivo/i) == "vivo";
+      var isXiaomi = sUserAgent.match(/mi\s/i) == "mi ";
+      var isXiaomi2s = sUserAgent.match(/mix\s/i) == "mix ";
+      var isRedmi = sUserAgent.match(/redmi/i) == "redmi";
+      var isSamsung = sUserAgent.match(/sm-/i) == "sm-";
+      if (isIphone) {
+        alert("iphone");
+        window.location.href =
+          "https://apps.apple.com/cn/app/%E9%99%A2%E6%A0%A1%E6%83%85%E6%8A%A5/id1537758884";
+      } else if (isHuawei || isHonor) {
+        alert("huawei");
+        window.location.href = "https://appgallery.huawei.com/app/C104250091";
+      } else if (isOppo || isOppoR15) {
+        alert("oppo");
+        window.location.href =
+          "https://www.shanghairanking.cn/_uni/app/app220921.apk";
+      } else if (isVivo) {
+        alert("vivo");
+        window.location.href =
+          "https://www.shanghairanking.cn/_uni/app/app220921.apk";
+      } else if (isXiaomi || isRedmi || isXiaomi2s) {
+        alert("xiaomi");
+        window.location.href =
+          "https://www.shanghairanking.cn/_uni/app/app220921.apk";
+      } else if (isSamsung) {
+        alert("samsung");
+        window.location.href =
+          "https://www.shanghairanking.cn/_uni/app/app220921.apk";
+      } else {
+        alert("其他安卓设备");
+        // window.location.href(
+        //   "https://www.shanghairanking.cn/_uni/app/app220921.apk"
+        // );
+        window.location.href =
+          "https://www.shanghairanking.cn/_uni/app/app220921.apk";
+      }
+    };
+  </script>
+</html>
